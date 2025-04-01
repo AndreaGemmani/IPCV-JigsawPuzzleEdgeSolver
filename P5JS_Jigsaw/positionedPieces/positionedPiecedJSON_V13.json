@@ -1,0 +1,290 @@
+{
+  "arrAllShowingPieces": [
+    {
+      "pieceNumber": 2,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 2802,
+      "posY": 223,
+      "rotZ": 0,
+      "scaleFac": 0.5
+    },
+    {
+      "pieceNumber": 86,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 2745,
+      "posY": 650.1999969482422,
+      "rotZ": 7.85,
+      "scaleFac": 0.5
+    },
+    {
+      "pieceNumber": 81,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 2765.800000190735,
+      "posY": 911.4000244140625,
+      "rotZ": 9.508000001907348,
+      "scaleFac": 0.5
+    },
+    {
+      "pieceNumber": 89,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 2475.800000190735,
+      "posY": 584.1999969482422,
+      "rotZ": 3.118000001907349,
+      "scaleFac": 0.5
+    },
+    {
+      "pieceNumber": 108,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 2457.800000190735,
+      "posY": 262,
+      "rotZ": 3.078000001907349,
+      "scaleFac": 0.5
+    },
+    {
+      "pieceNumber": 297,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 2211,
+      "posY": 214,
+      "rotZ": 1.65,
+      "scaleFac": 0.5
+    },
+    {
+      "pieceNumber": 317,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 2134,
+      "posY": 556,
+      "rotZ": 6.24,
+      "scaleFac": 0.5
+    },
+    {
+      "pieceNumber": 271,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 2184,
+      "posY": 999.4000244140625,
+      "rotZ": 9.53,
+      "scaleFac": 0.5
+    },
+    {
+      "pieceNumber": 92,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 1855,
+      "posY": 157,
+      "rotZ": 3.2,
+      "scaleFac": 0.5
+    },
+    {
+      "pieceNumber": 262,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 2786.2000045776367,
+      "posY": -177,
+      "rotZ": 6.392000045776367,
+      "scaleFac": 0.5
+    },
+    {
+      "pieceNumber": 270,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 2189.599998474121,
+      "posY": 1267.4000244140625,
+      "rotZ": 14.25599998474121,
+      "scaleFac": 0.5
+    },
+    {
+      "pieceNumber": 370,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 2208.599998474121,
+      "posY": 1575.4000244140625,
+      "rotZ": 7.685999984741211,
+      "scaleFac": 0.5
+    },
+    {
+      "pieceNumber": 163,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 2531.599998474121,
+      "posY": 1578.4000244140625,
+      "rotZ": 10.955999984741212,
+      "scaleFac": 0.5
+    },
+    {
+      "pieceNumber": 252,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 2532.599998474121,
+      "posY": 1951.4000244140625,
+      "rotZ": 12.60599998474121,
+      "scaleFac": 0.5
+    },
+    {
+      "pieceNumber": 340,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 2176.599998474121,
+      "posY": 1965.4000244140625,
+      "rotZ": 12.59599998474121,
+      "scaleFac": 0.5
+    },
+    {
+      "pieceNumber": 255,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 2152.000030517578,
+      "posY": 2321.2667236328125,
+      "rotZ": 9.47000030517578,
+      "scaleFac": 0.5
+    },
+    {
+      "pieceNumber": 322,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 2548.000030517578,
+      "posY": 2267.2667236328125,
+      "rotZ": 7.790000305175782,
+      "scaleFac": 0.5
+    },
+    {
+      "pieceNumber": 291,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 1809,
+      "posY": 1990.2000732421875,
+      "rotZ": 4.72,
+      "scaleFac": 0.5
+    },
+    {
+      "pieceNumber": 331,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 1928,
+      "posY": 2294.2000732421875,
+      "rotZ": 9.46,
+      "scaleFac": 0.5
+    },
+    {
+      "pieceNumber": 377,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 1854,
+      "posY": 891.8000183105469,
+      "rotZ": 7.92,
+      "scaleFac": 0.5
+    },
+    {
+      "pieceNumber": 86,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 1792,
+      "posY": 1328.0000305175781,
+      "rotZ": 7.8,
+      "scaleFac": 0.5
+    },
+    {
+      "pieceNumber": 81,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 1828,
+      "posY": 1594,
+      "rotZ": 9.45000030517578,
+      "scaleFac": 0.5
+    },
+    {
+      "pieceNumber": 305,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 804,
+      "posY": 958,
+      "rotZ": 0,
+      "scaleFac": 0.5
+    },
+    {
+      "pieceNumber": 335,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 866,
+      "posY": 655,
+      "rotZ": 10.92,
+      "scaleFac": 0.5
+    },
+    {
+      "pieceNumber": 57,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 469,
+      "posY": 586,
+      "rotZ": 7.97,
+      "scaleFac": 0.5
+    },
+    {
+      "pieceNumber": 125,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 541,
+      "posY": 950,
+      "rotZ": 4.73,
+      "scaleFac": 0.5
+    }
+  ]
+}

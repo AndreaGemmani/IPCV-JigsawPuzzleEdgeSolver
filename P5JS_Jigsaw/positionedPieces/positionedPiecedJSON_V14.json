@@ -1,0 +1,364 @@
+{
+  "arrAllShowingPieces": [
+    {
+      "pieceNumber": 271,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 1584,
+      "posY": 1449.4000244140625,
+      "rotZ": 9.53,
+      "scaleFac": 0.5,
+      "batchIndex": 0
+    },
+    {
+      "pieceNumber": 270,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 1589.599998474121,
+      "posY": 1717.4000244140625,
+      "rotZ": 14.25599998474121,
+      "scaleFac": 0.5,
+      "batchIndex": 0
+    },
+    {
+      "pieceNumber": 370,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 1608.599998474121,
+      "posY": 2025.4000244140625,
+      "rotZ": 7.685999984741211,
+      "scaleFac": 0.5,
+      "batchIndex": 0
+    },
+    {
+      "pieceNumber": 163,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 1931.599998474121,
+      "posY": 2028.4000244140625,
+      "rotZ": 10.955999984741212,
+      "scaleFac": 0.5,
+      "batchIndex": 0
+    },
+    {
+      "pieceNumber": 252,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 1932.599998474121,
+      "posY": 2401.4000244140625,
+      "rotZ": 12.60599998474121,
+      "scaleFac": 0.5,
+      "batchIndex": 0
+    },
+    {
+      "pieceNumber": 340,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 1576.599998474121,
+      "posY": 2415.4000244140625,
+      "rotZ": 12.59599998474121,
+      "scaleFac": 0.5,
+      "batchIndex": 0
+    },
+    {
+      "pieceNumber": 255,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 1552.0000305175781,
+      "posY": 2771.2667236328125,
+      "rotZ": 9.47000030517578,
+      "scaleFac": 0.5,
+      "batchIndex": 0
+    },
+    {
+      "pieceNumber": 322,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 1948.0000305175781,
+      "posY": 2717.2667236328125,
+      "rotZ": 7.790000305175782,
+      "scaleFac": 0.5,
+      "batchIndex": 0
+    },
+    {
+      "pieceNumber": 291,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 1209,
+      "posY": 2440.2000732421875,
+      "rotZ": 4.72,
+      "scaleFac": 0.5,
+      "batchIndex": 0
+    },
+    {
+      "pieceNumber": 331,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 1328,
+      "posY": 2744.2000732421875,
+      "rotZ": 9.46,
+      "scaleFac": 0.5,
+      "batchIndex": 0
+    },
+    {
+      "pieceNumber": 377,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 1254,
+      "posY": 1341.8000183105469,
+      "rotZ": 7.92,
+      "scaleFac": 0.5,
+      "batchIndex": 0
+    },
+    {
+      "pieceNumber": 86,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 1192,
+      "posY": 1778.0000305175781,
+      "rotZ": 7.8,
+      "scaleFac": 0.5,
+      "batchIndex": 0
+    },
+    {
+      "pieceNumber": 81,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 1228,
+      "posY": 2044,
+      "rotZ": 9.45000030517578,
+      "scaleFac": 0.5,
+      "batchIndex": 0
+    },
+    {
+      "pieceNumber": 108,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 886,
+      "posY": 1405.6000366210938,
+      "rotZ": 9.31,
+      "scaleFac": 0.5,
+      "batchIndex": 0
+    },
+    {
+      "pieceNumber": 89,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 923,
+      "posY": 1727.6000366210938,
+      "rotZ": 9.33,
+      "scaleFac": 0.5,
+      "batchIndex": 0
+    },
+    {
+      "pieceNumber": 297,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 636.4000015258789,
+      "posY": 1368.8000183105469,
+      "rotZ": 7.884000015258789,
+      "scaleFac": 0.5,
+      "batchIndex": 0
+    },
+    {
+      "pieceNumber": 317,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 580,
+      "posY": 1719.4000244140625,
+      "rotZ": 12.45,
+      "scaleFac": 0.5,
+      "batchIndex": 0
+    },
+    {
+      "pieceNumber": 305,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 1542.60009765625,
+      "posY": 975,
+      "rotZ": 14.1560009765625,
+      "scaleFac": 0.5,
+      "batchIndex": 0
+    },
+    {
+      "pieceNumber": 335,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 1845.60009765625,
+      "posY": 1038.8000183105469,
+      "rotZ": 18.7860009765625,
+      "scaleFac": 0.5,
+      "batchIndex": 0
+    },
+    {
+      "pieceNumber": 57,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 1919.2000732421875,
+      "posY": 644,
+      "rotZ": 22.122000732421874,
+      "scaleFac": 0.5,
+      "batchIndex": 0
+    },
+    {
+      "pieceNumber": 125,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 1555.2000732421875,
+      "posY": 713,
+      "rotZ": 18.882000732421876,
+      "scaleFac": 0.5,
+      "batchIndex": 0
+    },
+    {
+      "pieceNumber": 204,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 2149.60009765625,
+      "posY": 658.2000007629395,
+      "rotZ": 23.4760009765625,
+      "scaleFac": 0.5,
+      "batchIndex": 0
+    },
+    {
+      "pieceNumber": 299,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 2170.4000244140625,
+      "posY": 1023.2000007629395,
+      "rotZ": 23.484000244140624,
+      "scaleFac": 0.5,
+      "batchIndex": 0
+    },
+    {
+      "pieceNumber": 223,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 2210.60009765625,
+      "posY": 1385.6000366210938,
+      "rotZ": 21.9860009765625,
+      "scaleFac": 0.5,
+      "batchIndex": 0
+    },
+    {
+      "pieceNumber": 196,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 2507.2000732421875,
+      "posY": 1337.6000366210938,
+      "rotZ": 23.572000732421873,
+      "scaleFac": 0.5,
+      "batchIndex": 0
+    },
+    {
+      "pieceNumber": 285,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 2502.60009765625,
+      "posY": 1057.8000183105469,
+      "rotZ": 28.3960009765625,
+      "scaleFac": 0.5,
+      "batchIndex": 0
+    },
+    {
+      "pieceNumber": 305,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 804,
+      "posY": 748,
+      "rotZ": 0,
+      "scaleFac": 0.5,
+      "batchIndex": 1
+    },
+    {
+      "pieceNumber": 335,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 866,
+      "posY": 445,
+      "rotZ": 10.92,
+      "scaleFac": 0.5,
+      "batchIndex": 1
+    },
+    {
+      "pieceNumber": 57,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 469,
+      "posY": 376,
+      "rotZ": 7.97,
+      "scaleFac": 0.5,
+      "batchIndex": 1
+    },
+    {
+      "pieceNumber": 125,
+      "pieceCenter": [
+        800,
+        800
+      ],
+      "posX": 541,
+      "posY": 740,
+      "rotZ": 4.73,
+      "scaleFac": 0.5,
+      "batchIndex": 1
+    }
+  ]
+}
