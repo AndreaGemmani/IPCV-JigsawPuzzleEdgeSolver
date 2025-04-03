@@ -1,0 +1,30 @@
+{
+  "database_name": "DB_V01",
+  "categories": {
+    "basePhoto": {
+      "description": "Foto originali con nome sequenziale corretto.",
+      "naming_pattern": "Jigg_piece{###}_V01",
+      "examples": [
+        "Jigg_piece000_V01",
+        "Jigg_piece001_V01",
+        "Jigg_piece020_V01"
+      ]
+    },
+    "cropped": {
+      "description": "Immagini ritagliate con un livello di crop specifico.",
+      "naming_pattern": "Jigg_piece{###}_V01_crop{level}",
+      "examples": [
+        "Jigg_piece020_V01_crop65",
+        "Jigg_piece015_V01_crop30"
+      ]
+    },
+    "rename": {
+      "description": "Cartella temporanea per immagini in attesa di essere rinominate.",
+      "naming_pattern": "Varie",
+      "examples": [
+        "immagine1.png",
+        "foto_puzzle_temp.jpg"
+      ]
+    }
+  }
+}
