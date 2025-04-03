@@ -14,24 +14,26 @@ The main of the code runs in the Notebook, and also includes a complete explanat
 
 ## Installation
 
-1. Clone the repository:
-   ```bash
-   git clone <repository_url>
-   cd <repository_folder>
-   ```
-2. Install dependencies:
-_tbd_
-   ```bash
-   pip install -r requirements.txt
-   ```
+Download or clone the repository
 
 ## Usage
 
+### Setting up a VEnv or Conda Env (recommended)
+
+In order to run the Notebook, you need to have jupyter installed, it is recommended to create a conda or venv environment with Python3, in which you should install cv2, matplotlib, numpy, os, random, re
+
 ### Running the Notebook
-_tbd_
+open a terminal (preferably a Conda or VEnv) and `cd ` to the _Notebook\_Jigsaw_ folder (where `.ipynb` file is located), then run
+`jupyter notebook`
+a browser window should pop-up, listing all the folder's files, you should then click on the `.ipynb` file
 
 ### Running P5JS sketch
-_tbd_
+open a terminal in the _P5JS\_Jigsaw_ folder (where `index.html` is located) and run
+`python -m http.server 8000`
+or any other port number, to open a localhost (necessary for JS to load JSON files due to CORS policies),
+then open a browser tab and type
+`localhost:8000`
+if something went wrong you could debug any error message in the browser developer tab (`ctrl+shift+I` on Windows)
 
 ## License
 
