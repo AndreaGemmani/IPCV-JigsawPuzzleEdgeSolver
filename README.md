@@ -1,4 +1,5 @@
-# Jigsaw Puzzle Solver using Edge Contour Profiles - project for the Image Processing and Computer Vision course
+# Jigsaw Puzzle Solver using Edge Contour Profiles
+Project developed for the [Image Processing and Computer Vision course](https://www.unibo.it/en/study/course-units-transferable-skills-moocs/course-unit-catalogue/course-unit/2024/391122) during Academic Year 2024/2025.
 
 ## Description
 
@@ -10,7 +11,7 @@ The project includes:
 - An **image database** containing over 400 puzzle pieces, representing about half of an actual full puzzle.
 - **P5.js files** to visually represent the reconstructed puzzle using the data extracted from Python and the Jupyter Notebook.
 
-The main of the code runs in the Notebook, and also includes a complete explanation of the entire project, including an analysis of the reconstruction made in P5JS.
+The main part of the code runs in the Notebook, and also includes a complete explanation of the entire project, including a final analysis of the puzzle reconstruction made in P5JS.
 
 ## Installation
 
