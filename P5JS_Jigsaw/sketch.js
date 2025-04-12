@@ -2,6 +2,7 @@
 // 2025-02-27 start Jigsaw Puzzle Edges Visualizer
 // 2025-03-03 iteration UI match
 // 2025-04-01 GitHub upload
+// 2025-04-12 createGraphics update 
 
 
 
@@ -46,17 +47,25 @@
 
 let allEdgesDataJSON;
 let actPieceIndex = 0;
-let dyText = 20;
+// let dyText = 20;
+let dyText = 36;
 let baseyText = 10;
+let baseyTextGraphics = 20;
 
-let textSize_HUD_UI = 12;
-let textSize_PieceNumber = 20;
-let textSize_EdgeName = 16;
+// let textSize_HUD_UI = 12;
+// let textSize_PieceNumber = 20;
+// let textSize_EdgeName = 16;
+let textSize_HUD_UI = 26;
+let textSize_PieceNumber = 26;
+let textSize_EdgeName = 26;
 
-let textHUD_centerEdges_x = 0;
-let textHUD_centerEdges_y = 0;
+let textHUD_centerEdgesGraphics_x = 0;
+let textHUD_centerEdgesGraphics_y = 0;
 
 let ackw = 20;	
+
+let flag_showBasicPuzzle = true;
+let flag_showMatchEdgesGraphics = true;
 
 let flag_loop = true;
 let flag_showCommandsList = true;
@@ -67,10 +76,11 @@ let flag_showText = true;
 
 let autoUpdateFreq = 5;
 
-let flag_modeSwitcher = false; 
-
-let arrEdgesColour = [];
+let arrEdgesColourE1 = [];
+let arrEdgesColourE2 = [];
 let arrCornersColour = [];
+
+let graphicsEdges;
 
 
 
@@ -192,25 +202,52 @@ function transformEdgeAlignAnchors(pieceNumber, edgeDir, mirror = false, shiftDo
 
 
 
-function showEdgePiece(pieceNumber, edgeDir, mirror = false) {	
+function showEdgePiece(pieceNumber, edgeDir, mirror = false, otherCanvas = null) {	
 
 	let transformedData = transformEdgeAlignAnchors(pieceNumber, edgeDir, mirror);
 	let transformedPixels = transformedData[0];
 	c1 = transformedData[1];
 	c2 = transformedData[2];
-	
-	for (let i = 0; i < transformedPixels.length; i++) {
-		noFill();
-		stroke(arrEdgesColour[enumEdges[edgeDir]]);
-		strokeWeight(renderPointStrokeWeight);
-		point(transformedPixels[i][0], transformedPixels[i][1]);
 
-		if (i === Math.round(transformedPixels.length / 2) && flag_showText) {
-			noStroke();
-			fill(arrEdgesColour[enumEdges[edgeDir]]);
-			textSize(textSize_EdgeName);
-			testo = pieceNumber + " - " + edgeDir;
-			text(testo, transformedPixels[i][0], transformedPixels[i][1]);
+	let colorToShow = mirror ? arrEdgesColourE2[enumEdges[edgeDir]] : arrEdgesColourE1[enumEdges[edgeDir]];
+	
+	if(otherCanvas == null) {
+		for (let i = 0; i < transformedPixels.length; i++) {
+			noFill();
+			stroke(colorToShow);
+			strokeWeight(renderPointStrokeWeight);
+			point(transformedPixels[i][0], transformedPixels[i][1]);
+
+			if (i === Math.round(transformedPixels.length / 2) && flag_showText) {
+				noStroke();
+				fill(colorToShow);
+				textSize(textSize_EdgeName);
+				testo = pieceNumber + " - " + edgeDir;
+				text(testo, transformedPixels[i][0], transformedPixels[i][1]);
+			}
+		}
+	}
+	else {
+
+		for (let i = 0; i < transformedPixels.length; i++) {
+			otherCanvas.noFill();
+			otherCanvas.stroke(colorToShow);
+			otherCanvas.strokeWeight(renderPointStrokeWeight);
+			otherCanvas.point(transformedPixels[i][0], transformedPixels[i][1]);
+
+			// todo: usare LERP per scegliere posizione in cui scrivere invece che eyeballing transformedPixels.length / 6
+			// todo: controllare che non venga eseguito più di una volta essendo round()
+			if (i === Math.round(transformedPixels.length / 16) && flag_showText) {
+				otherCanvas.noStroke();
+				otherCanvas.fill(colorToShow);
+				otherCanvas.textSize(textSize_EdgeName);
+				testo = pieceNumber + " - " + edgeDir;
+				otherCanvas.push();
+				otherCanvas.translate(transformedPixels[i][0], transformedPixels[i][1]);
+				otherCanvas.rotate(-90);
+				otherCanvas.text(testo, 0,0);
+				otherCanvas.pop();
+			}
 		}
 	}
 }
@@ -267,13 +304,14 @@ function drawWholePiece(pieceToDrawNumber = 0, posX = 0, posY = 0, rotZ = 0, sca
 		for (let edge in targetPieceToDraw.edges) {
 			indexEdge = enumEdges[edge];
 			// console.log("Edge: " + edge + ", index: " + indexEdge);
-			stroke(arrEdgesColour[indexEdge]);
+			stroke(arrEdgesColourE1[indexEdge]);
 			let pixels = targetPieceToDraw.edges[edge].pixelsCanny;
 			for (let i = 0; i < pixels.length; i++) {
 				point(pixels[i][0], pixels[i][1]);
 				if(i == round(pixels.length / 2)) {
 					if ( flag_showText ) {
 						text(edge + " - " + indexEdge,pixels[i][0], pixels[i][1]);
+						// break;
 					}
 				}
 			}
@@ -717,40 +755,40 @@ let arrQuartets = [];
 
 let listOfHelpStrings = "List of commands (case sensitive):\n" + 
 	"\n" +
-	"h \ttoggle show HUD\n" +
-	"H \ttoggle list of commands\n" +
-	"t \ttoggle show text\n" +
-	"B \ttoggle (not yet toggle) bigger texts\n" +
-	"l \ttoggle loop (draw calls)\n" +
-	"b \ttoggle refresh background\n" +
-	"a \ttoggle autoscroll next piece\n" +
-	"f \tfaster refresh frequency (new pieces per frame)\n" +
-	"g \tfaster refresh frequency (new pieces per frame)\n" +
+	"h \tToggle show HUD\n" +
+	"H \tToggle list of commands\n" +
+	"t \tToggle show text\n" +
+	"B \tToggle (not yet toggle) bigger texts\n" +
+	"l \tToggle loop (draw calls)\n" +
+	"b \tToggle refresh background\n" +
+	"a \tToggle autoscroll next piece\n" +
+	"f \tFaster refresh frequency (new pieces per frame)\n" +
+	"g \tFaster refresh frequency (new pieces per frame)\n" +
 	"v \tmax refresh frequency (one per frame)\n" +
 	"\n" +
-	"e \tswitch mode\n" +
+	"e \tToggle Matching Edges window\n" +
 	"\n" +
-	"k \tnext piece edge E1\n" +
-	"K \tnext 10th piece edge E1\n" +
-	"j \tprev piece edge E1\n" +
-	"J \tprev 10th piece edge E1\n" +
-	"0 \tback to first piece E1\n" + 
-	"1 \tedge direction UP\n" + 
-	"2 \tedge direction RIGHT\n" + 
-	"3 \tedge direction DOWN\n" + 
-	"4 \tedge direction LEFT\n" + 
-	"u \tnext matching edge E2\n" +
-	"y \tprev matching edge E2\n" +
-	"i \tnext batchIndex for groups\n" +
-	"o \tnext batchIndex for groups\n" +
-	"r \ttoggle rotate or move piece(s) mode\n" +
-	"arrow(s) \tmove all selected pieces (having current batchIndex) in selected direction (30 pixels)\n" +
+	"k \tNext piece edge E1\n" +
+	"K \tNext 10th piece edge E1\n" +
+	"j \tPrev piece edge E1\n" +
+	"J \tPrev 10th piece edge E1\n" +
+	"0 \tBack to first piece E1\n" + 
+	"1 \tEdge direction UP\n" + 
+	"2 \tEdge direction RIGHT\n" + 
+	"3 \tEdge direction DOWN\n" + 
+	"4 \tEdge direction LEFT\n" + 
+	"u \tNext matching edge E2\n" +
+	"y \tPrev matching edge E2\n" +
+	"i \tNext batchIndex for groups\n" +
+	"o \tNext batchIndex for groups\n" +
+	"r \tToggle rotate or move piece(s) mode\n" +
+	"Arrow(s) \tmove all selected pieces (having current batchIndex) in selected direction (30 pixels)\n" +
 	"\n" +
-	"m \tsave current piece in place and rotation (adds to arrShowinPiecesEdge)\n" +
-	"z \tempty arrShowinPiecesEdge\n" +
+	"m \tSave current piece in place and rotation (adds to arrShowinPiecesEdge)\n" +
+	"z \tEmpty arrShowinPiecesEdge\n" +
 	"\n" +
-	"s \tsave JSON with place pieces (from arrShowinPiecesEdge)\n" +
-	"S \tsave screen of the canvas\n";
+	"s \tSave JSON with placed pieces (from arrShowinPiecesEdge)\n" +
+	"S \tSave screenshot of the canvas\n";
 
 
 
@@ -765,18 +803,28 @@ function preload() {
 function setup() {
 	// createCanvas(1600, 1600);
 	createCanvas(3200, 3200);
+	// createCanvas(3060, 1480);
 
-	console.log(listOfHelpStrings);
+	graphicsEdges = createGraphics(800, 1200);
+	// graphicsEdges = createGraphics(1600, 800);
+	graphicsEdges.angleMode(DEGREES);
 
-	textHUD_centerEdges_x = width / 8;
-	textHUD_centerEdges_y = height / 4;
+	textHUD_centerEdgesGraphics_x = graphicsEdges.width / 30;
+	textHUD_centerEdgesGraphics_y = graphicsEdges.height / 4;
 
-	arrEdgesColour = [
+	arrEdgesColourE1 = [
 		color(72, 210, 139),
 		color(255, 78, 179),
 		color(0, 206, 209),
 		color(255, 112, 0)
 		];
+	arrEdgesColourE2 = [
+		color(2, 201, 39),
+		color(255, 0, 85),
+		color(13, 73, 214),
+		color(255, 162, 0)
+		];
+
 	arrCornersColour = [
 		color(255, 0, 0),
 		color(0, 255, 0),
@@ -808,6 +856,9 @@ function setup() {
 		saveJSON(JSON.parse(allMatchesJSON), 'matches.json');
 	}
 
+
+	console.log(listOfHelpStrings);
+
 	frameRate(15);
 	// noLoop();
 }
@@ -834,100 +885,131 @@ function draw() {
 	// if (!piece) return;
 
 
-	if( flag_modeSwitcher ) {
-		push();
-		translate(width/4, height/4);
+	// EDGES MATCHING GRAPHICS 
+	if( flag_showMatchEdgesGraphics ) {
+		graphicsEdges.background(14); // (slightly grey) black bg
 
-		// // debugging shift in y coord to align edges to their control points
-		// // there are moved because of blurring in the corner detection phase
-		// push();
-		// 	// strokeWeight(20);
-		// 	// stroke(255);
-		// 	noStroke();
-		// 	fill(255);
-		// 	rectMode(CENTER);
-		// 	rect(40,-1,80,20);
-		// 	// rect(50,0,1,1);
-		// pop();
+		// showing graphics border
+		graphicsEdges.stroke(255);
+		graphicsEdges.strokeWeight(8);
+		graphicsEdges.noFill();
+		graphicsEdges.rect(0,0,graphicsEdges.width,graphicsEdges.height);
 
+		graphicsEdges.push();
 
-
-		// 389-390-391
-		// showEdgePiece(389,"LEFT");
-		// showEdgePiece(390,"RIGHT",true);
-
-		// showEdgePiece(390,"UP");
-		// showEdgePiece(391,"DOWN",true);
-		
-		// showEdgePiece(392,"RIGHT");
-		// showEdgePiece(393,"LEFT",true);
+			// // debugging shift in y coord to align edges to their control points
+			// // there are moved because of blurring in the corner detection phase
+			// push();
+			// 	// strokeWeight(20);
+			// 	// stroke(255);
+			// 	noStroke();
+			// 	fill(255);
+			// 	rectMode(CENTER);
+			// 	rect(40,-1,80,20);
+			// 	// rect(50,0,1,1);
+			// pop();
 
 
-		// showEdgePiece(395,"LEFT");
-		// showEdgePiece(394,"DOWN",true);
+			// known matches are:
+			// 389,"LEFT" 	- 	390,"RIGHT"
+			// 390,"UP" 	- 	391,"DOWN"
+			// 392,"RIGHT" 	- 	393,"LEFT"
+			// 394,"DOWN" 	- 	395,"LEFT"
 
-		// showAllEdges(76);
-		// showEdgePiece(389,"LEFT");
-		// showEdgePiece(348,"LEFT",true);
-		// showAllEdges(actPieceIndex, true);
-		// actPieceNumber = allEdgesDataJSON.arrPieces[actPieceIndex].pieceNumber;
-		// showEdgePiece(actPieceNumber,"RIGHT",true);
+			// 389-390-391
+			// showEdgePiece(389,"LEFT");
+			// showEdgePiece(390,"RIGHT",true);
+			// showEdgePiece(390,"UP");
+			// showEdgePiece(391,"DOWN",true);
+			
+			// showEdgePiece(392,"RIGHT");
+			// showEdgePiece(393,"LEFT",true);
+
+			// showEdgePiece(394,"DOWN",true);
+			// showEdgePiece(395,"LEFT");
+
+			// showAllEdges(76);
+			// showEdgePiece(389,"LEFT");
+			// showEdgePiece(348,"LEFT",true);
+			// showAllEdges(actPieceIndex, true);
+			// actPieceNumber = allEdgesDataJSON.arrPieces[actPieceIndex].pieceNumber;
+			// showEdgePiece(actPieceNumber,"RIGHT",true);
 
 
-		// showEdgePiece(pieceToMatch, dirToMatch);
+			// showEdgePiece(pieceToMatch, dirToMatch);
 
-		// actMatchToShowIndex = pieceToMatch;
-		actMatchToShowIndex = actPieceIndex;
-		pieceToFind = allEdgesDataJSON.arrPieces[actPieceIndex];
-		pieceNumberToFind = pieceToFind.pieceNumber;
-		// console.log(pieceNumberToFind)
-		actChosenPiece = allMatchesJSON.arrMatches.find(p => p.pieceNumber === pieceNumberToFind);
-		if (actChosenPiece) {
-			// console.log(actChosenPiece)
-			actChosenPieceNumber = actChosenPiece.pieceNumber;
-			actChosenPieceEdge = dirToMatch;
+			// actMatchToShowIndex = pieceToMatch;
+			actMatchToShowIndex = actPieceIndex;
+			pieceToFind = allEdgesDataJSON.arrPieces[actPieceIndex];
+			pieceNumberToFind = pieceToFind.pieceNumber;
+			// console.log(pieceNumberToFind)
+			actChosenPiece = allMatchesJSON.arrMatches.find(p => p.pieceNumber === pieceNumberToFind);
 
-			showEdgePiece(actChosenPieceNumber, actChosenPieceEdge);
+			if (actChosenPiece) {
+				// console.log(actChosenPiece)
+				actChosenPieceNumber = actChosenPiece.pieceNumber;
+				actChosenPieceEdge = dirToMatch;
 
-			// for(let m = 0; m < )
-			actMatchingPiece = actChosenPiece.edgesMatches[actChosenPieceEdge][actMatchedEdgeIndex];
-			actMatchingPieceNumber = actMatchingPiece.pieceNumberMatch;
-			actMatchingPieceEdge = actMatchingPiece.pieceEdgeMatch;
-			actMatchingPieceDist = actMatchingPiece.distance;
-			showEdgePiece(actMatchingPieceNumber, actMatchingPieceEdge, true);
+				// retrieving actual matching piece's edge data
+				actMatchingPiece = actChosenPiece.edgesMatches[actChosenPieceEdge][actMatchedEdgeIndex];
+				actMatchingPieceNumber = actMatchingPiece.pieceNumberMatch;
+				actMatchingPieceEdge = actMatchingPiece.pieceEdgeMatch;
+				actMatchingPieceDist = actMatchingPiece.distance;
 
-			if ( flag_showHUD ) {
-				push();
-					translate(textHUD_centerEdges_x, - textHUD_centerEdges_y);
-					// fill(255, 255, 0);
-					noStroke();
-					textSize(textSize_HUD_UI);
-					textAlign(LEFT, TOP);
-					fill( arrEdgesColour[enumEdges[actChosenPieceEdge]] );
-					// text(`Base curve edge (index): ${actMatchToShowIndex} - ${actChosenPieceEdge}`, 0, baseyText);
-					text(`Base curve edge \t(index): ${actMatchToShowIndex} \t(piece): ${actChosenPieceNumber} - ${actChosenPieceEdge}`, 0, baseyText);
+				// showing edges
+				graphicsEdges.push();
+					graphicsEdges.translate(graphicsEdges.width/2, graphicsEdges.height/4);
+					graphicsEdges.rotate(90);
+					showEdgePiece(actChosenPieceNumber, actChosenPieceEdge, false, graphicsEdges);
+					showEdgePiece(actMatchingPieceNumber, actMatchingPieceEdge, true, graphicsEdges);
+				graphicsEdges.pop();
 
-					fill( arrEdgesColour[enumEdges[actMatchingPieceEdge]] );
-					text(`Match curve edge \t(indBest): ${actMatchedEdgeIndex} \t(piece): ${actMatchingPieceNumber} - ${actMatchingPieceEdge}`, 0, baseyText + dyText);
-					// text(`Piece Number: ${piece.pieceNumber}`, 0, baseyText + dyText);
-					// if(actMatchingPieceDist < 1000) fill(0, 255, 0);
-					// else if(actMatchingPieceDist < 1300) fill(255, 255, 0);
-					// else fill(255, 0, 0);
-					let col1 = color(0,255,0);
-					let col2 = color(255,0,0);
-					let t = constrain(map(actMatchingPieceDist, 800, 1600, 0, 1), 0, 1);
-					fill(lerpColor(col1, col2, t));
-					text(`Distance: ${actMatchingPieceDist}`, 0, baseyText + dyText * 2);
-				pop();
+				// showing text HUD for edges
+				if ( flag_showHUD ) {
+					graphicsEdges.push();
+						graphicsEdges.translate(textHUD_centerEdgesGraphics_x * 2, baseyTextGraphics);
+						// fill(255, 255, 0);
+						graphicsEdges.noStroke();
+						graphicsEdges.textSize(textSize_HUD_UI);
+						graphicsEdges.textAlign(LEFT, TOP);
+						graphicsEdges.fill( arrEdgesColourE1[enumEdges[actChosenPieceEdge]] );
+						// text(`Base curve edge (index): ${actMatchToShowIndex} - ${actChosenPieceEdge}`, 0, baseyTextGraphics);
+						graphicsEdges.text(`Base curve edge \t(index): ${actMatchToShowIndex} \t(piece): ${actChosenPieceNumber} - ${actChosenPieceEdge}`, 0, baseyTextGraphics);
+
+						graphicsEdges.fill( arrEdgesColourE2[enumEdges[actMatchingPieceEdge]] );
+						graphicsEdges.text(`Match curve edge \t(indBest): ${actMatchedEdgeIndex} \t(piece): ${actMatchingPieceNumber} - ${actMatchingPieceEdge}`, 0, baseyTextGraphics + dyText);
+						// text(`Piece Number: ${piece.pieceNumber}`, 0, baseyTextGraphics + dyText);
+						// if(actMatchingPieceDist < 1000) fill(0, 255, 0);
+						// else if(actMatchingPieceDist < 1300) fill(255, 255, 0);
+						// else fill(255, 0, 0);
+						let col1 = color(0,255,0);
+						let col2 = color(255,0,0);
+						let t = constrain(map(actMatchingPieceDist, 800, 1600, 0, 1), 0, 1);
+						graphicsEdges.fill(lerpColor(col1, col2, t));
+						graphicsEdges.text(`Distance: ${actMatchingPieceDist}`, 0, baseyTextGraphics + dyText * 2.5);
+					graphicsEdges.pop();
+				}
 			}
-		}
-		pop();
-	} else {
+			else {
+				graphicsEdges.push();
+					graphicsEdges.translate(textHUD_centerEdgesGraphics_x * 2, baseyTextGraphics * 2);
+					graphicsEdges.noStroke();
+					graphicsEdges.textSize(textSize_HUD_UI + 10);
+					graphicsEdges.textAlign(LEFT, TOP);
+					graphicsEdges.fill( 255, 40, 40 );
+					// text(`Base curve edge (index): ${actMatchToShowIndex} - ${actChosenPieceEdge}`, 0, baseyTextGraphics);
+					graphicsEdges.text("Piece to show has no matches\nProbably flagged as faulty", 0, baseyTextGraphics);
+				graphicsEdges.pop();
+			}
+		graphicsEdges.pop();
+	}
 
+	// BASIC PUZZLE 
+	if(flag_showBasicPuzzle) {
 
-	let pieceToMove = allEdgesDataJSON.arrPieces[actPieceIndex];
-	actPieceToMoveNumber = pieceToMove.pieceNumber;
-	if (!actPieceToMoveNumber) return;
+		let pieceToMove = allEdgesDataJSON.arrPieces[actPieceIndex];
+		actPieceToMoveNumber = pieceToMove.pieceNumber;
+		if (!actPieceToMoveNumber) return;
 
 		if ( flag_showHUD ) {
 			fill(0);
@@ -970,7 +1052,13 @@ function draw() {
 			drawWholePiece(pz.pieceNumber, pz.posX, pz.posY, pz.rotZ, pz.scaleFac, pz.batchIndex ?? -1);
 		}
 
+
+
 	}
+
+
+	// showing graphics for the matching edges 
+	if(flag_showMatchEdgesGraphics) image(graphicsEdges, width - graphicsEdges.width, 0);
 
 
 
@@ -1011,7 +1099,7 @@ function keyPressed() {
 			break;
 
 		case 'e':
-			flag_modeSwitcher = !flag_modeSwitcher;
+			flag_showMatchEdgesGraphics = !flag_showMatchEdgesGraphics;
 			redraw();
 			break;
 		case 'k':
