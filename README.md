@@ -15,25 +15,43 @@ The main part of the code runs in the Notebook, and also includes a complete exp
 
 ## Installation
 
-Download or clone the repository
+### Clone or download the repository
+
+To clone the repo from a prompt terminal, run
+```bash
+git clone https://github.com/AndreaGemmani/IPCV-JigsawPuzzleEdgeSolver
+```
+or download the zip from here (green Code button) -->
+
+Please notice that the repository contains the image database, the total size uncompressed should be around 400MB.
 
 ## Usage
 
 ### Setting up a VEnv or Conda Env (recommended)
 
-In order to run the Notebook, you need to have jupyter installed, it is recommended to create a conda or venv environment with Python3, in which you should install cv2, matplotlib, numpy, os, random, re
+In order to run the Notebook, you need to have jupyter installed, it is recommended to create a conda or venv environment with Python3, in which you should install cv2, matplotlib, numpy (also basic os, random, re), listed in the `requirements.txt`
+
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
+```
 
 ### Running the Notebook
 open a terminal (preferably a Conda or VEnv) and `cd ` to the _Notebook\_Jigsaw_ folder (where `.ipynb` file is located), then run
-`jupyter notebook`
-a browser window should pop-up, listing all the folder's files, you should then click on the `.ipynb` file
+```bash
+jupyter notebook
+```
+a browser window should pop-up automatically, listing all the files in the folder you run the command on, you should then click on the `.ipynb` file
 
 ### Running P5JS sketch
 open a terminal in the _P5JS\_Jigsaw_ folder (where `index.html` is located) and run
-`python -m http.server 8000`
-or any other port number, to open a localhost (necessary for JS to load JSON files due to CORS policies),
-then open a browser tab and type
-`localhost:8000`
+```bash
+python -m http.server 8000 # or any other port number
+```
+to open a localhost (necessary for JS to load JSON files due to CORS policies),
+then open a browser tab and type `localhost:8000`
+
 if something went wrong you could debug any error message in the browser developer tab (`ctrl+shift+I` on Windows)
 
 ## License
